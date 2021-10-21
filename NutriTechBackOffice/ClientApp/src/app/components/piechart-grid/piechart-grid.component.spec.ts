@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PiechartGridComponent } from './piechart-grid.component';
 
@@ -6,7 +6,7 @@ describe('PiechartGridComponent', () => {
   let component: PiechartGridComponent;
   let fixture: ComponentFixture<PiechartGridComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PiechartGridComponent ]
     })
