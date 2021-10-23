@@ -1,17 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+// import { AuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/compat/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { FormUserComponent } from './pages/form-user/form-user.component';
-import { LoginFormComponent } from './pages/login-form/login-form.component';
-import { PlanFormComponent } from './pages/plan-form/plan-form.component';
-import { AppComponent } from './app.component';
-import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
-import { UserLoginGuard } from './user-login.guard';
 import { AsignacionPlanComponent } from './pages/asignacion-plan/asignacion-plan.component';
+import { FormUserComponent } from './pages/form-user/form-user.component';
+import { HomeComponent } from './pages/home/home.component';
 import { ListadoUsuariosComponent } from './pages/listado-usuarios/listado-usuarios.component';
-import { ActivatedRoute, Params } from '@angular/router';
+import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { ModificarUsuariosComponent } from './pages/modificar-usuarios/modificar-usuarios.component';
+import { PlanFormComponent } from './pages/plan-form/plan-form.component';
+
 
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo([""]);
@@ -60,7 +59,7 @@ const routes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
 
-]
+];
 
 @NgModule({
   declarations: [],

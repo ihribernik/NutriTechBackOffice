@@ -6,7 +6,7 @@ import { environment as env } from 'src/environments/environment';
 import { User } from '../interfaces/user';
 import { Paciente } from '../interfaces/paciente';
 import { PacienteForm } from '../interfaces/paciente-form';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ export class UsersService {
   constructor(private http: HttpClient, public auth: AngularFireAuth) { }
 
   getToken() {
-    return JSON.parse(JSON.stringify(this.auth.auth.currentUser)).stsTokenManager.accessToken
+    return JSON.parse(JSON.stringify(this.auth.currentUser)).stsTokenManager.accessToken
   }
 
   //POST: Dar de alta a un usuario

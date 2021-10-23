@@ -1,19 +1,18 @@
-import { ActivatedRoute, Params, Route, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Role } from '../../interfaces/role';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PopUpComponent } from '../../components/pop-up/pop-up.component';
+import { Paciente } from '../../interfaces/paciente';
+import { PacienteForm } from '../../interfaces/paciente-form';
 import { User } from '../../interfaces/user';
 import { UserForm } from '../../interfaces/user-form';
+import { LoadingSpinnerService } from '../../services/loading-spinner.service';
 import { RolesService } from '../../services/roles.service';
 import { UsersService } from '../../services/users.service';
-import { PopUpComponent } from '../../components/pop-up/pop-up.component';
-import { MatDialog } from '@angular/material';
-import { Paciente } from '../../interfaces/paciente';
-import { LoadingSpinnerService } from '../../services/loading-spinner.service';
-import { PacienteForm } from '../../interfaces/paciente-form';
 
 const PACIENTE = "Paciente";
-const ADMIN = "Admin"
+const ADMIN = "Admin";
 const NUTRICIONISTA = "Nutricionista";
 
 @Component({
@@ -64,12 +63,12 @@ export class ModificarUsuariosComponent implements OnInit {
   fillRoles() {
     this.roleService.getRoles().subscribe(
       data => {
-        this.roles = data.map(item => { return { nombre: item.nombre } })
+        this.roles = data.map(item => { return { nombre: item.nombre }; });
       },
       err => {
-        console.log(err)
+        console.log(err);
       }
-    )
+    );
   }
 
 
@@ -81,7 +80,7 @@ export class ModificarUsuariosComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(parameters => {
       this.emailParam = parameters.get('email');
       this.rolParam = parameters.get('rol');
-    })
+    });
   }
 
   cargarPantalla() {
@@ -112,7 +111,7 @@ export class ModificarUsuariosComponent implements OnInit {
       },
       err => {
       }
-    )
+    );
   }
 
   cargarPaciente() {
@@ -181,7 +180,7 @@ export class ModificarUsuariosComponent implements OnInit {
   }
 
   private updateWithRolSelection() {
-    if ((this.rolParam == ADMIN && this.rolSeleccionado == PACIENTE) || (this.rolParam == NUTRICIONISTA && this.rolSeleccionado == PACIENTE) ) {
+    if ((this.rolParam == ADMIN && this.rolSeleccionado == PACIENTE) || (this.rolParam == NUTRICIONISTA && this.rolSeleccionado == PACIENTE)) {
       let paciente = this.buildPacienteForm();
       this.updatePacienteInfo(paciente.Email, paciente);
     }
@@ -234,16 +233,16 @@ export class ModificarUsuariosComponent implements OnInit {
         this.dialog.open(PopUpComponent, { data: { title: "Listo!", message: "El usuario fue correctamente modificado." } });
 
         this.dialog.afterAllClosed.subscribe(() => {
-          this.navigateToUserList()
-        })
+          this.navigateToUserList();
+        });
 
       },
       error => {
-        this.dialog.open(PopUpComponent, { data: { title: "Ups hubo un error!", message: "No se pudo modificar al usuario." } })
+        this.dialog.open(PopUpComponent, { data: { title: "Ups hubo un error!", message: "No se pudo modificar al usuario." } });
 
         this.dialog.afterAllClosed.subscribe(() => {
           this.enableFormWhileFinished();
-        })
+        });
       },
     );
   }
@@ -257,18 +256,18 @@ export class ModificarUsuariosComponent implements OnInit {
         this.dialog.open(PopUpComponent, { data: { title: "Listo!", message: "El paciente fue correctamente modificado." } });
 
         this.dialog.afterAllClosed.subscribe(() => {
-          this.navigateToUserList()
-        })
+          this.navigateToUserList();
+        });
       },
       err => {
         this.dialog.open(PopUpComponent, { data: { title: "Ups hubo un error!", message: "No se pudo modificar el paciente." } });
 
         this.dialog.afterAllClosed.subscribe(() => {
           this.enableFormWhileFinished();
-        })
+        });
       }
 
-    )
+    );
   }
 
   private updateUserInfo(email: string, userForm: UserForm) {
@@ -279,18 +278,18 @@ export class ModificarUsuariosComponent implements OnInit {
         this.dialog.open(PopUpComponent, { data: { title: "Listo!", message: "El usuario fue correctamente modificado." } });
 
         this.dialog.afterAllClosed.subscribe(() => {
-          this.navigateToUserList()
-        })
+          this.navigateToUserList();
+        });
       },
       err => {
         this.dialog.open(PopUpComponent, { data: { title: "Ups hubo un error!", message: "No se pudo modificar el usuario." } });
 
         this.dialog.afterAllClosed.subscribe(() => {
           this.enableFormWhileFinished();
-        })
+        });
       }
 
-    )
+    );
   }
 
   private disableFormWhileLoading() {

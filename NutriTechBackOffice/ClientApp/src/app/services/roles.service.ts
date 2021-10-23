@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { Role } from '../interfaces/role';
 import { environment as env } from 'src/environments/environment';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class RolesService {
     //  return token
     //}))
 
-    return JSON.parse(JSON.stringify(this.auth.auth.currentUser)).stsTokenManager.accessToken
+    return JSON.parse(JSON.stringify(this.auth.currentUser)).stsTokenManager.accessToken
   }
 
   getRoles(): Observable<Role[]> {

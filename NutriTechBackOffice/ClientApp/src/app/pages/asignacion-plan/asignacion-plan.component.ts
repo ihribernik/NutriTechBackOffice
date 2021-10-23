@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { PopUpComponent } from '../../components/pop-up/pop-up.component';
 import { Paciente } from '../../interfaces/paciente';
 import { PacienteForm } from '../../interfaces/paciente-form';
@@ -60,7 +60,7 @@ export class AsignacionPlanComponent implements OnInit {
         (planes) => {
           this.planesDisponibles = planes;
         },
-        (error) => { console.error("No se pudo obtener los planes disponibles") })
+        (error) => { console.error("No se pudo obtener los planes disponibles"); });
 
   }
   obtenerPacientes() {
@@ -69,7 +69,7 @@ export class AsignacionPlanComponent implements OnInit {
         (pacientes) => {
           this.pacientesRegistrados = pacientes;
         },
-        (error) => { console.error("No se pudo obtener a los pacientes registrados") });
+        (error) => { console.error("No se pudo obtener a los pacientes registrados"); });
   }
 
   asignarPlan() {
@@ -91,7 +91,7 @@ export class AsignacionPlanComponent implements OnInit {
       MedidaCintura: this.pacienteSeleccionado.medidaCintura,
       TipoAlimentacion: this.pacienteSeleccionado.tipoAlimentacion,
       PlanAsignado: this.getNewPlanAsignado()
-    }
+    };
   }
 
 
@@ -132,8 +132,8 @@ export class AsignacionPlanComponent implements OnInit {
           this.dialog.open(PopUpComponent, { data: { title: "Listo!", message: "El plan fue asignado al paciente correctamente." } });
 
           this.dialog.afterAllClosed.subscribe(() => {
-            this.refreshPantalla()
-          })
+            this.refreshPantalla();
+          });
         }
         ,
         (error) => { this.dialog.open(PopUpComponent, { data: { title: "Oops!", message: "No se pudo asignar un plan al paciente." } }); }
@@ -142,7 +142,7 @@ export class AsignacionPlanComponent implements OnInit {
 
 
   private refreshPantalla() {
-    console.log("Refreshing component...")
+    console.log("Refreshing component...");
     let currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([currentUrl]);

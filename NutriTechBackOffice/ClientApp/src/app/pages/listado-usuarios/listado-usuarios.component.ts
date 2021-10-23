@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../../interfaces/user';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../../components/pop-up/pop-up.component';
 import { UsersService } from '../../services/users.service';
 import { LoadingSpinnerService } from '../../services/loading-spinner.service';

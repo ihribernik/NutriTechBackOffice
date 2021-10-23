@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
 import { PlanAlimentacion } from '../interfaces/plan-alimentacion';
@@ -18,7 +18,7 @@ export class PlanesService {
   };
   constructor(private http: HttpClient, public auth: AngularFireAuth) { }
   getToken() {
-    return JSON.parse(JSON.stringify(this.auth.auth.currentUser)).stsTokenManager.accessToken
+    return JSON.parse(JSON.stringify(this.auth.currentUser)).stsTokenManager.accessToken
   }
   //POST: NEW PLAN
   addPlan(plan: PlanAlimentacionForm): Observable<{}> {

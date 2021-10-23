@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Role } from '../../interfaces/role';
-import { User } from '../../interfaces/user';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { PopUpComponent } from '../../components/pop-up/pop-up.component';
 import { UserForm } from '../../interfaces/user-form';
+import { LoadingSpinnerService } from '../../services/loading-spinner.service';
 import { RolesService } from '../../services/roles.service';
 import { UsersService } from '../../services/users.service';
-import { PopUpComponent } from '../../components/pop-up/pop-up.component';
-import { MatDialog } from '@angular/material';
-import { LoadingSpinnerService } from '../../services/loading-spinner.service';
-import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-form-user',
@@ -35,13 +33,13 @@ export class FormUserComponent {
     this.disableFormWhileLoading();
     this.roleService.getRoles().subscribe(
       data => {
-        this.roles = data.map(item => { return { nombre: item.nombre } })
+        this.roles = data.map(item => { return { nombre: item.nombre }; });
         this.enableFormWhileFinished();
       },
       err => {
-        console.log(err)
+        console.log(err);
       }
-    )
+    );
   }
 
   onSubmit() {
@@ -64,8 +62,8 @@ export class FormUserComponent {
           this.dialog.open(PopUpComponent, { data: { title: "Listo!", message: "El usuario fue correctamente registrado." } });
 
           this.dialog.afterAllClosed.subscribe(() => {
-            this.refreshPantalla()
-          })
+            this.refreshPantalla();
+          });
         },
         err => {
           this.dialog.open(PopUpComponent, { data: { title: "Ups hubo un error!", message: "No se pudo agregar el usuario." } });
@@ -73,15 +71,15 @@ export class FormUserComponent {
 
           this.dialog.afterAllClosed.subscribe(() => {
             this.enableFormWhileFinished();
-          })
+          });
         }
-      )
+      );
 
     }
   }
 
   private refreshPantalla() {
-    console.log("Refreshing component...")
+    console.log("Refreshing component...");
     let currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([currentUrl]);

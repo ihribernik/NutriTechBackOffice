@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { PlanAlimentacionForm } from 'src/app/interfaces/plan-alimentacion-form';
 import { PopUpComponent } from '../../components/pop-up/pop-up.component';
 import { PlanAlimentacion } from '../../interfaces/plan-alimentacion';
@@ -14,7 +14,7 @@ import { PlanesService } from '../../services/planes.service';
 })
 export class PlanFormComponent implements OnInit {
   planForm: FormGroup;
-  @ViewChild(FormGroupDirective, null) formGroupDirective: FormGroupDirective;
+  @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
 
   planesExistentes: Array<PlanAlimentacion> = [];
   opcionesDesayuno: Array<string> = [];
@@ -73,7 +73,7 @@ export class PlanFormComponent implements OnInit {
         "Merienda": this.opcionesMerienda,
         "Cena": this.opcionesCena,
         "Colacion": this.opcionesColacion,
-      }
+      };
 
       console.log("Sending request to create a new plan");
       this.planesService.addPlan(plan).subscribe(
@@ -102,20 +102,17 @@ export class PlanFormComponent implements OnInit {
         console.log("Response to get plans: OK");
         console.table(this.planesExistentes);
       },
-      (error) => { console.error("Response to get all plans: FAILS", error) }
-    )
+      (error) => { console.error("Response to get all plans: FAILS", error); }
+    );
   }
 
   //Desayuno
   addOpcionDesayuno() {
     let nuevaOpcion: string = this.planForm.controls["nuevaOpcionDesayuno"].value;
-
     if (nuevaOpcion) {
       this.opcionesDesayuno.push(nuevaOpcion);
     }
-
     this.planForm.controls["nuevaOpcionDesayuno"].reset();
-
   }
 
   removeOpcionDesayuno(posOpcion: number) {
@@ -137,7 +134,6 @@ export class PlanFormComponent implements OnInit {
   removeOpcionAlmuerzo(posOpcion: number) {
     this.opcionesAlmuerzo.splice(posOpcion, 1);
   }
-
 
   //Merienda
   addOpcionMerienda() {
@@ -171,7 +167,6 @@ export class PlanFormComponent implements OnInit {
     this.opcionesCena.splice(posOpcion, 1);
   }
 
-
   //Colacion
   addOpcionColacion() {
     let nuevaOpcion: string = this.planForm.controls["nuevaOpcionColacion"].value;
@@ -193,10 +188,7 @@ export class PlanFormComponent implements OnInit {
     this.opcionesDesayuno = [];
     this.opcionesMerienda = [];
     this.opcionesMerienda = [];
-    this.opcionesCena = []
+    this.opcionesCena = [];
     this.opcionesColacion = [];
   }
-
-
-
 }
