@@ -23,7 +23,7 @@ export class UsersService {
   constructor(private http: HttpClient, public auth: AngularFireAuth) { }
 
   getToken() {
-    return JSON.parse(JSON.stringify(this.auth.currentUser)).stsTokenManager.accessToken
+    return JSON.parse(JSON.stringify(this.auth.currentUser)).stsTokenManager.accessToken;
   }
 
   //POST: Dar de alta a un usuario
@@ -33,12 +33,12 @@ export class UsersService {
 
   //GET: Obtener usuario por mail
   getUserById(email: String): Observable<User> {
-    return this.http.get<User>(`${env.apiBaseUrl}/User/${email}`, this.httpOptions)
+    return this.http.get<User>(`${env.apiBaseUrl}/User/${email}`, this.httpOptions);
   }
 
   //GET: Obtener todos los usuarios
   getUsers(): Observable<Array<User>> {
-    return this.http.get<Array<User>>(`${env.apiBaseUrl}/User/`, this.httpOptions)
+    return this.http.get<Array<User>>(`${env.apiBaseUrl}/User/`, this.httpOptions);
   }
 
   //DELETE: Borrar un usuario

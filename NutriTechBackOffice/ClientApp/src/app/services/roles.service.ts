@@ -25,7 +25,7 @@ export class RolesService {
     //  return token
     //}))
 
-    return JSON.parse(JSON.stringify(this.auth.currentUser)).stsTokenManager.accessToken
+    return JSON.parse(JSON.stringify(this.auth.currentUser)).stsTokenManager.accessToken;
   }
 
   getRoles(): Observable<Role[]> {

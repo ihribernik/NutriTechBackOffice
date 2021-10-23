@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-// import { AuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
-import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/compat/auth-guard';
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 import { AsignacionPlanComponent } from './pages/asignacion-plan/asignacion-plan.component';
 import { FormUserComponent } from './pages/form-user/form-user.component';

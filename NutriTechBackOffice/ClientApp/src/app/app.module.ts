@@ -55,9 +55,9 @@ import { NetworkInterceptor } from './services/interceptors/network.interceptor'
     AppRoutingModule,
     LayoutModule,
     ReactiveFormsModule,
-    AuthGuardModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AuthGuardModule,
     MaterialModule,
     NgxChartsModule
   ],
